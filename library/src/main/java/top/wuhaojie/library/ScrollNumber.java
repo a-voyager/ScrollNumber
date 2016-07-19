@@ -147,7 +147,7 @@ public class ScrollNumber extends View {
         canvas.translate(0, mOffset * getMeasuredHeight());
         drawSelf(canvas);
         drawNext(canvas);
-        canvas.restore();
+//        canvas.restore();
     }
 
     private void setFromNumber(int number) {

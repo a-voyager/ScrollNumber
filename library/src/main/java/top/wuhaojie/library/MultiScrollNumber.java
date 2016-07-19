@@ -1,6 +1,7 @@
 package top.wuhaojie.library;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -36,6 +37,17 @@ public class MultiScrollNumber extends LinearLayout {
     public MultiScrollNumber(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.MultiScrollNumber);
+        int primaryNumber = typedArray.getInteger(R.styleable.MultiScrollNumber_primary_number, 0);
+        int targetNumber = typedArray.getInteger(R.styleable.MultiScrollNumber_target_number, 0);
+        int numberSize = typedArray.getInteger(R.styleable.MultiScrollNumber_number_size, 130);
+
+        setNumber(primaryNumber, targetNumber);
+        setTextSize(numberSize);
+
+        typedArray.recycle();
+
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
 

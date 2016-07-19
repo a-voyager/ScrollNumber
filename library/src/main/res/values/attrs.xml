@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MultiScrollNumber">
+        <attr name="primary_number" format="integer"/>
+        <attr name="target_number" format="integer"/>
+        <attr name="number_size" format="integer"/>
+        <!--<attr name="number_color" format="color"/>-->
+    </declare-styleable>
+</resources>
