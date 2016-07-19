@@ -1,28 +1,28 @@
-# Scroll Number Widget
+# 滚动数字控件
 
 [中文](https://github.com/a-voyager/ScrollNumber/raw/master/README_zh.md) | [English](https://github.com/a-voyager/ScrollNumber/raw/master/README.md)
 
-A **Simple**、**Graceful**、**Easy-to-Use** Scroll Number Widget！
+一个 **简单**、**优雅**、**易用** 的滚动数字控件！
 
-> Don't forget give me a star :）
+> 别忘记给个Star支持一下哦 :）
 
-## Feature
- - Just need to call `setNumber()` could be performed.
- - You can **dynamically** customize number's colors、size、range...
+## 特点
+ - 只需要调用 `setNumber()` 即可，非常简单.
+ - 可以**动态地**修改数字的大小、颜色、范围等等...
 
 
-## Dependency
-There are two ways:
+## 依赖
+可以选择两种方式:
 
- - clone this project, and use as dependency
- - just add following code to you build.gradle:
+ - 克隆本项目，然后在你的IDE中依赖此项目即可
+ - 只需要在build.gradle中添加一下代码即可(可能暂时无法使用):
 
  ```groovy
  compile 'top.wuhaojie:scrollnumber:1.0.0'
  ```
 
-## Usage
- -  Add this to your layout xml file:
+## 用法
+ -  在布局文件中添加:
 
 ```xml
 <top.wuhaojie.library.MultiScrollNumber
@@ -30,49 +30,49 @@ There are two ways:
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
 ```
- - Call `setNumber()` in your java code:
+ - 在Java代码中调用 `setNumber()` 即可:
 
 ```java
 MultiScrollNumber scrollNumber = (MultiScrollNumber) findViewById(R.id.scroll_number);
 scrollNumber.setNumber(2048);
 ```
 
-## Customize
- - Color
- Call `setTextColors(@ColorRes int[] textColors)` with a paramiter, a array stores colors **from High bit to Low bit**.
+## 自定义
+ - 颜色
+ 调用 `setTextColors(@ColorRes int[] textColors)` 方法， 参数为数组， 存放的是**从高位到低位**的颜色.
 
 ```java
 scrollNumber.setTextColors(new int[]{R.color.blue01, R.color.red01,
                 R.color.green01, R.color.purple01});
 ```
 
- - Size
- Just call `setTextSize(int textSize)` with the size you want to change to, unit is `sp` .
+ - 大小
+ 只需要在想要改变字体大小的时候直接调用 `setTextSize(int textSize)` 即可， 注意参数的单位是 `sp` .
 
 ```java
 scrollNumber.setTextSize(64);
 ```
 
- - Range
- Call `setNumber(int from, int to)` instead of `setNumber(int val)` to specify a range.
+ - 范围
+ 调用 `setNumber(int from, int to)` 来代替 `setNumber(int val)` 可以明确指出起始范围.
 
 ```java
 scrollNumber.setNumber(64, 2048);
 ```
 
- - Interpolator
- You could change interpolator with call `setInterpolator(Interpolator interpolator)`.
+ - 插值器
+ 可以调用 `setInterpolator(Interpolator interpolator)` 来使用其它的插值器.
 
 ```java
 scrollNumber.setInterpolator(new DecelerateInterpolator());
 ```
 
-## Xml
-| Meaning       | Attribute     |
+## Xml属性
+| 含义       | 属性     |
 | ------------- |:-------------:|
-| from a number |primary_number |
-| to a number   | target_number |
-| number size   | number_size   |
+| 开始数字 |primary_number |
+| 结束数字   | target_number |
+| 字体大小   | number_size   |
 
 ## License
     The MIT License (MIT)
