@@ -7,6 +7,7 @@
     tools:context="top.wuhaojie.scrollnumber.MainActivity">
 
     <top.wuhaojie.library.MultiScrollNumber
+        android:id="@+id/scroll_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </RelativeLayout>
