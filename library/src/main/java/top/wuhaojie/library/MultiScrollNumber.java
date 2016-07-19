@@ -5,6 +5,8 @@ import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class MultiScrollNumber extends LinearLayout {
     private int mTextSize = 130;
 
     private int[] mTextColors = new int[]{R.color.purple01};
+    private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
 
     public MultiScrollNumber(Context context) {
         this(context, null);
@@ -54,6 +57,7 @@ public class MultiScrollNumber extends LinearLayout {
             scrollNumber.setTextColor(ContextCompat
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
             scrollNumber.setTextSize(mTextSize);
+            scrollNumber.setInterpolator(mInterpolator);
             scrollNumber.setNumber(0, mTargetNumbers.get(i), i * 10);
             mScrollNumbers.add(scrollNumber);
             addView(scrollNumber);
@@ -118,6 +122,15 @@ public class MultiScrollNumber extends LinearLayout {
         mTextSize = textSize;
         for (ScrollNumber s : mScrollNumbers) {
             s.setTextSize(textSize);
+        }
+    }
+
+    public void setInterpolator(Interpolator interpolator) {
+        if (interpolator == null)
+            throw new IllegalArgumentException("interpolator couldn't be null");
+        mInterpolator = interpolator;
+        for (ScrollNumber s : mScrollNumbers) {
+            s.setInterpolator(interpolator);
         }
     }
 
