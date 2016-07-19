@@ -36,7 +36,6 @@ public class MultiScrollNumber extends LinearLayout {
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
 
-        setNumber(2048,8192);
 
     }
 
@@ -69,6 +68,9 @@ public class MultiScrollNumber extends LinearLayout {
 
 
     public void setNumber(int from, int to) {
+        if (to < from)
+            throw new UnsupportedOperationException("'to' value must > 'from' value");
+
         resetView();
         // operate to
         int number = to, count = 0;
@@ -112,6 +114,7 @@ public class MultiScrollNumber extends LinearLayout {
 
 
     public void setTextSize(int textSize) {
+        if (textSize <= 0) throw new IllegalArgumentException("text size must > 0!");
         mTextSize = textSize;
         for (ScrollNumber s : mScrollNumbers) {
             s.setTextSize(textSize);
