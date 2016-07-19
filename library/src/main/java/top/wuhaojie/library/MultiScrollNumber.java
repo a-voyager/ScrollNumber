@@ -15,7 +15,8 @@ import java.util.List;
  */
 public class MultiScrollNumber extends LinearLayout {
     private Context mContext;
-    private List<Integer> mNumbers = new ArrayList<>();
+    private List<Integer> mTargetNumbers = new ArrayList<>();
+    private List<Integer> mPrimaryNumbers = new ArrayList<>();
     private List<ScrollNumber> mScrollNumbers = new ArrayList<>();
     private int mTextSize = 130;
 
@@ -35,40 +36,68 @@ public class MultiScrollNumber extends LinearLayout {
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
 
-        setNumber(2048);
-
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setTextSize(64);
-            }
-        }, 3000);
+        setNumber(2048,8192);
 
     }
 
     public void setNumber(int val) {
-        mNumbers.clear();
-        mScrollNumbers.clear();
-        removeAllViews();
+        resetView();
 
         int number = val;
         while (number > 0) {
             int i = number % 10;
-            mNumbers.add(i);
+            mTargetNumbers.add(i);
             number /= 10;
         }
 
-        for (int i = mNumbers.size() - 1; i >= 0; i--) {
+        for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
             ScrollNumber scrollNumber = new ScrollNumber(mContext);
             scrollNumber.setTextColor(ContextCompat
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
             scrollNumber.setTextSize(mTextSize);
-            scrollNumber.setNumber(0, mNumbers.get(i), i * 10);
+            scrollNumber.setNumber(0, mTargetNumbers.get(i), i * 10);
             mScrollNumbers.add(scrollNumber);
             addView(scrollNumber);
         }
     }
 
+    private void resetView() {
+        mTargetNumbers.clear();
+        mScrollNumbers.clear();
+        removeAllViews();
+    }
+
+
+    public void setNumber(int from, int to) {
+        resetView();
+        // operate to
+        int number = to, count = 0;
+        while (number > 0) {
+            int i = number % 10;
+            mTargetNumbers.add(i);
+            number /= 10;
+            count++;
+        }
+        // operate from
+        number = from;
+        while (count > 0) {
+            int i = number % 10;
+            mPrimaryNumbers.add(i);
+            number /= 10;
+            count--;
+        }
+
+        for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
+            ScrollNumber scrollNumber = new ScrollNumber(mContext);
+            scrollNumber.setTextColor(ContextCompat
+                    .getColor(mContext, mTextColors[i % mTextColors.length]));
+            scrollNumber.setTextSize(mTextSize);
+            scrollNumber.setNumber(mPrimaryNumbers.get(i), mTargetNumbers.get(i), i * 10);
+            mScrollNumbers.add(scrollNumber);
+            addView(scrollNumber);
+        }
+
+    }
 
     public void setTextColors(@ColorRes int[] textColors) {
         if (textColors == null || textColors.length == 0)
