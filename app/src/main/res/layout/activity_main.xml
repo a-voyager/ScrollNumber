@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="top.wuhaojie.scrollnumber.MainActivity">
 
-    <top.wuhaojie.library.ScrollNumber
+    <top.wuhaojie.library.MultiScrollNumber
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

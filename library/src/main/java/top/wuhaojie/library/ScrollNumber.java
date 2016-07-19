@@ -49,7 +49,7 @@ public class ScrollNumber extends View {
 
         measureTextHeight();
 
-        setNumber(0, 6, 1000);
+//        setNumber(0, 6, 1000);
 
     }
 
@@ -65,13 +65,15 @@ public class ScrollNumber extends View {
     }
 
     public void setTextSize(int textSize) {
-        this.mTextSize = dp2px(textSize);
+        this.mTextSize = sp2px(textSize);
+        mPaint.setTextSize(mTextSize);
         requestLayout();
         invalidate();
     }
 
     public void setTextColor(int mTextColor) {
         this.mTextColor = mTextColor;
+        mPaint.setColor(mTextColor);
         invalidate();
     }
 
@@ -104,7 +106,7 @@ public class ScrollNumber extends View {
             case MeasureSpec.AT_MOST:
             case MeasureSpec.UNSPECIFIED:
                 mPaint.getTextBounds("0", 0, 1, mTextBounds);
-                result = mTextBounds.height();
+                result = mTextBounds.height() + 20;
                 break;
         }
         result = mode == MeasureSpec.AT_MOST ? Math.min(result, val) : result;
@@ -126,7 +128,7 @@ public class ScrollNumber extends View {
                 break;
         }
         result = mode == MeasureSpec.AT_MOST ? Math.min(result, val) : result;
-        return result + getPaddingLeft() + getPaddingRight();
+        return result + getPaddingLeft() + getPaddingRight() + 15;
     }
 
 
