@@ -1,6 +1,6 @@
 # 滚动数字控件
 
-[中文](https://github.com/a-voyager/ScrollNumber/raw/master/README_zh.md) | [English](https://github.com/a-voyager/ScrollNumber/raw/master/README.md)
+[中文](https://github.com/a-voyager/ScrollNumber/blob/master/README_zh.md) | [English](https://github.com/a-voyager/ScrollNumber/blob/master/README.md)
 
 一个 **简单**、**优雅**、**易用** 的滚动数字控件！
 

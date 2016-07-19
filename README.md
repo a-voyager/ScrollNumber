@@ -1,6 +1,6 @@
 # Scroll Number Widget
 
-[中文](https://github.com/a-voyager/ScrollNumber/raw/master/README_zh.md) | [English](https://github.com/a-voyager/ScrollNumber/raw/master/README.md)
+[中文](https://github.com/a-voyager/ScrollNumber/blob/master/README_zh.md) | [English](https://github.com/a-voyager/ScrollNumber/blob/master/README.md)
 
 A **Simple**、**Graceful**、**Easy-to-Use** Scroll Number Widget！
 
