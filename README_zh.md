@@ -10,6 +10,7 @@
  - 只需要调用 `setNumber()` 即可，非常简单.
  - 可以**动态地**修改数字的大小、颜色、范围等等...
 
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/01.gif)
 
 ## 依赖
 可以选择两种方式:
@@ -46,6 +47,8 @@ scrollNumber.setTextColors(new int[]{R.color.blue01, R.color.red01,
                 R.color.green01, R.color.purple01});
 ```
 
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/02.gif)
+
  - 大小
  只需要在想要改变字体大小的时候直接调用 `setTextSize(int textSize)` 即可， 注意参数的单位是 `sp` .
 
@@ -53,12 +56,16 @@ scrollNumber.setTextColors(new int[]{R.color.blue01, R.color.red01,
 scrollNumber.setTextSize(64);
 ```
 
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/03.gif)
+
  - 范围
  调用 `setNumber(int from, int to)` 来代替 `setNumber(int val)` 可以明确指出起始范围.
 
 ```java
 scrollNumber.setNumber(64, 2048);
 ```
+
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/04.gif)
 
  - 插值器
  可以调用 `setInterpolator(Interpolator interpolator)` 来使用其它的插值器.

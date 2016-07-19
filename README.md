@@ -10,6 +10,7 @@ A **Simple**、**Graceful**、**Easy-to-Use** Scroll Number Widget！
  - Just need to call `setNumber()` could be performed.
  - You can **dynamically** customize number's colors、size、range...
 
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/01.gif)
 
 ## Dependency
 There are two ways:
@@ -46,6 +47,8 @@ scrollNumber.setTextColors(new int[]{R.color.blue01, R.color.red01,
                 R.color.green01, R.color.purple01});
 ```
 
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/02.gif)
+
  - Size
  Just call `setTextSize(int textSize)` with the size you want to change to, unit is `sp` .
 
@@ -53,12 +56,16 @@ scrollNumber.setTextColors(new int[]{R.color.blue01, R.color.red01,
 scrollNumber.setTextSize(64);
 ```
 
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/03.gif)
+
  - Range
  Call `setNumber(int from, int to)` instead of `setNumber(int val)` to specify a range.
 
 ```java
 scrollNumber.setNumber(64, 2048);
 ```
+
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/04.gif)
 
  - Interpolator
  You could change interpolator with call `setInterpolator(Interpolator interpolator)`.
