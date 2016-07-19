@@ -34,14 +34,13 @@ public class MultiScrollNumber extends LinearLayout {
         mContext = context;
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
-        setTextSize(64);
+
+        setNumber(2048);
 
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                setNumber(2048);
-                requestLayout();
-                invalidate();
+                setTextSize(64);
             }
         }, 3000);
 
@@ -88,8 +87,6 @@ public class MultiScrollNumber extends LinearLayout {
         for (ScrollNumber s : mScrollNumbers) {
             s.setTextSize(textSize);
         }
-        requestLayout();
-        invalidate();
     }
 
 }

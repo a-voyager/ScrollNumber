@@ -67,6 +67,7 @@ public class ScrollNumber extends View {
     public void setTextSize(int textSize) {
         this.mTextSize = sp2px(textSize);
         mPaint.setTextSize(mTextSize);
+        measureTextHeight();
         requestLayout();
         invalidate();
     }
