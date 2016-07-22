@@ -75,7 +75,7 @@ scrollNumber.setInterpolator(new DecelerateInterpolator());
 ```
 
  - 字体
- 通过调用 `setTextFont(fileName)` 来改变字体, 记得在这之前把字体文件拷贝到 'assets/' 目录.
+ 通过调用 `setTextFont(fileName)` 来改变字体, 记得在这之前把字体文件拷贝到 `assets/` 目录.
 
 ```java
 scrollNumber.setTextFont("myfont.ttf");
@@ -93,7 +93,7 @@ scrollNumber.setTextFont("myfont.ttf");
 
 ## 更新日志
 
- - 添加字体修改支持
+ - 添加字体修改支持 2016年7月22日
 
 ## License
     The MIT License (MIT)

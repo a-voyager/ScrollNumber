@@ -75,7 +75,7 @@ scrollNumber.setInterpolator(new DecelerateInterpolator());
 ```
 
  - Font
- change text font by call `setTextFont(fileName)`, before this you should copy the font file to 'assets/' directory.
+ Change text font by call `setTextFont(fileName)`, before this you should copy the font file to `assets/` directory.
 
 ```java
 scrollNumber.setTextFont("myfont.ttf");
@@ -93,7 +93,7 @@ scrollNumber.setTextFont("myfont.ttf");
 
 ## Update Log
 
- - add font change option.
+ - add font change option on 22/7/2016.
 
 ## License
     The MIT License (MIT)
