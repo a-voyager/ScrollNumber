@@ -8,7 +8,7 @@ A **Simple**、**Graceful**、**Easy-to-Use** Scroll Number Widget！
 
 ## Feature
  - Just need to call `setNumber()` could be performed.
- - You can **dynamically** customize number's colors、size、range...
+ - You can **dynamically** customize number's colors、size、range、font...
 
 ![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/01.gif)
 
@@ -74,12 +74,26 @@ scrollNumber.setNumber(64, 2048);
 scrollNumber.setInterpolator(new DecelerateInterpolator());
 ```
 
+ - Font
+ change text font by call `setTextFont(fileName)`, before this you should copy the font file to 'assets/' directory.
+
+```java
+scrollNumber.setTextFont("myfont.ttf");
+```
+
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/05.png)
+
 ## Xml
 | Meaning       | Attribute     |
 | ------------- |:-------------:|
 | from a number |primary_number |
 | to a number   | target_number |
 | number size   | number_size   |
+
+
+## Update Log
+
+ - add font change option.
 
 ## License
     The MIT License (MIT)

@@ -8,7 +8,7 @@
 
 ## 特点
  - 只需要调用 `setNumber()` 即可，非常简单.
- - 可以**动态地**修改数字的大小、颜色、范围等等...
+ - 可以**动态地**修改数字的大小、颜色、范围、字体等等...
 
 ![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/01.gif)
 
@@ -74,12 +74,26 @@ scrollNumber.setNumber(64, 2048);
 scrollNumber.setInterpolator(new DecelerateInterpolator());
 ```
 
+ - 字体
+ 通过调用 `setTextFont(fileName)` 来改变字体, 记得在这之前把字体文件拷贝到 'assets/' 目录.
+
+```java
+scrollNumber.setTextFont("myfont.ttf");
+```
+
+![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/05.png)
+
 ## Xml属性
 | 含义       | 属性     |
 | ------------- |:-------------:|
 | 开始数字 |primary_number |
 | 结束数字   | target_number |
 | 字体大小   | number_size   |
+
+
+## 更新日志
+
+ - 添加字体修改支持
 
 ## License
     The MIT License (MIT)
