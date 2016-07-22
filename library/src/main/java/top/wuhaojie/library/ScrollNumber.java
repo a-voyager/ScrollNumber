@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -19,6 +21,7 @@ public class ScrollNumber extends View {
     private int mCurNum;
     private int mNextNum;
     private int mTargetNum;
+    private Context mContext;
 
     private float mOffset;
     private Paint mPaint;
@@ -30,6 +33,7 @@ public class ScrollNumber extends View {
     private Rect mTextBounds = new Rect();
     private int mTextSize = sp2px(130);
     private int mTextColor = 0xFF000000;
+    private Typeface mTypeface;
 
     public ScrollNumber(Context context) {
         this(context, null);
@@ -42,10 +46,14 @@ public class ScrollNumber extends View {
     public ScrollNumber(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        mContext = context;
+
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(mTextSize);
         mPaint.setColor(mTextColor);
+
+        if (mTypeface != null) mPaint.setTypeface(mTypeface);
 
         measureTextHeight();
 
@@ -68,6 +76,17 @@ public class ScrollNumber extends View {
         this.mTextSize = sp2px(textSize);
         mPaint.setTextSize(mTextSize);
         measureTextHeight();
+        requestLayout();
+        invalidate();
+    }
+
+
+    public void setTextFont(String fileName) {
+        if (TextUtils.isEmpty(fileName))
+            throw new IllegalArgumentException("please check file name end with '.ttf' or '.otf'");
+        mTypeface = Typeface.createFromAsset(mContext.getAssets(), fileName);
+        if (mTypeface == null) throw new RuntimeException("please check your font!");
+        mPaint.setTypeface(mTypeface);
         requestLayout();
         invalidate();
     }
@@ -107,11 +126,11 @@ public class ScrollNumber extends View {
             case MeasureSpec.AT_MOST:
             case MeasureSpec.UNSPECIFIED:
                 mPaint.getTextBounds("0", 0, 1, mTextBounds);
-                result = mTextBounds.height() + 20;
+                result = mTextBounds.height();
                 break;
         }
         result = mode == MeasureSpec.AT_MOST ? Math.min(result, val) : result;
-        return result + getPaddingTop() + getPaddingBottom();
+        return result + getPaddingTop() + getPaddingBottom()+dp2px(40);
     }
 
     private int measureWidth(int measureSpec) {

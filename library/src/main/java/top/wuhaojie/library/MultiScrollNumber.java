@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -25,6 +26,7 @@ public class MultiScrollNumber extends LinearLayout {
 
     private int[] mTextColors = new int[]{R.color.purple01};
     private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
+    private String mFontFileName;
 
     public MultiScrollNumber(Context context) {
         this(context, null);
@@ -70,6 +72,8 @@ public class MultiScrollNumber extends LinearLayout {
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
             scrollNumber.setTextSize(mTextSize);
             scrollNumber.setInterpolator(mInterpolator);
+            if (!TextUtils.isEmpty(mFontFileName))
+                scrollNumber.setTextFont(mFontFileName);
             scrollNumber.setNumber(0, mTargetNumbers.get(i), i * 10);
             mScrollNumbers.add(scrollNumber);
             addView(scrollNumber);
@@ -110,6 +114,8 @@ public class MultiScrollNumber extends LinearLayout {
             scrollNumber.setTextColor(ContextCompat
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
             scrollNumber.setTextSize(mTextSize);
+            if (!TextUtils.isEmpty(mFontFileName))
+                scrollNumber.setTextFont(mFontFileName);
             scrollNumber.setNumber(mPrimaryNumbers.get(i), mTargetNumbers.get(i), i * 10);
             mScrollNumbers.add(scrollNumber);
             addView(scrollNumber);
@@ -145,5 +151,14 @@ public class MultiScrollNumber extends LinearLayout {
             s.setInterpolator(interpolator);
         }
     }
+
+    public void setTextFont(String fileName) {
+        if (TextUtils.isEmpty(fileName)) throw new IllegalArgumentException("file name is null");
+        mFontFileName = fileName;
+        for (ScrollNumber s : mScrollNumbers) {
+            s.setTextFont(fileName);
+        }
+    }
+
 
 }
