@@ -81,6 +81,13 @@ scrollNumber.setInterpolator(new DecelerateInterpolator());
 scrollNumber.setTextFont("myfont.ttf");
 ```
 
+ - Animation Velocity
+ Call `scrollNumber.setScrollVelocity(v)` to set the animation velocity, number in range of 0 ～ 1000.
+
+```java
+scrollNumber.setScrollVelocity(30);
+```
+
 ![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/05.png)
 
 ## Xml

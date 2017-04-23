@@ -81,7 +81,7 @@ scrollNumber.setInterpolator(new DecelerateInterpolator());
 scrollNumber.setTextFont("myfont.ttf");
 ```
 
- - 字体
+ - 动画速度
  调用 `scrollNumber.setScrollVelocity(v)` 来设置动画速度, 范围为 0 ～ 1000.
 
 ```java

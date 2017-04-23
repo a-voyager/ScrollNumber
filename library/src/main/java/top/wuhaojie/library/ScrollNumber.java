@@ -8,7 +8,6 @@ import android.graphics.Typeface;
 import android.support.annotation.IntRange;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -20,13 +19,31 @@ import android.view.animation.Interpolator;
 class ScrollNumber extends View {
 
     public static final String TAG = "ScrollNumber";
+    /**
+     * default animation velocity
+     */
     public static final int DEFAULT_VELOCITY = 15;
+    /**
+     * number to - number from
+     */
     private int mDeltaNum;
+    /**
+     * the current showing number
+     */
     private int mCurNum;
+    /**
+     * the next showing number
+     */
     private int mNextNum;
+    /**
+     * the target number
+     */
     private int mTargetNum;
     private Context mContext;
 
+    /**
+     * number offset
+     */
     private float mOffset;
     private Paint mPaint;
     private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
