@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 //        scrollNumber.setNumber(64, 2048);
 //        scrollNumber.setInterpolator(new DecelerateInterpolator());
 
+
+        scrollNumber.setScrollVelocity(100);
         scrollNumber.setTextFont("myfont.ttf");
         scrollNumber.setNumber(2048);
     }

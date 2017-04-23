@@ -17,7 +17,7 @@ import android.view.animation.Interpolator;
 /**
  * Created by wuhaojie on 2016/7/15 11:36.
  */
-public class ScrollNumber extends View {
+class ScrollNumber extends View {
 
     public static final String TAG = "ScrollNumber";
     public static final int DEFAULT_VELOCITY = 15;
@@ -169,7 +169,7 @@ public class ScrollNumber extends View {
             postDelayed(mScrollRunnable, 0);
         }
 
-        Log.d(TAG, "onDraw: curr=" + mCurNum + " target=" + mTargetNum + " offset=" + mOffset);
+//        Log.d(TAG, "onDraw: curr=" + mCurNum + " target=" + mTargetNum + " offset=" + mOffset);
 
         canvas.translate(0, mOffset * getMeasuredHeight());
         drawSelf(canvas);

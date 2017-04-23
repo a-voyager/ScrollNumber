@@ -81,6 +81,13 @@ scrollNumber.setInterpolator(new DecelerateInterpolator());
 scrollNumber.setTextFont("myfont.ttf");
 ```
 
+ - 字体
+ 调用 `scrollNumber.setScrollVelocity(v)` 来设置动画速度, 范围为 0 ～ 1000.
+
+```java
+scrollNumber.setScrollVelocity(30);
+```
+
 ![image](https://github.com/a-voyager/ScrollNumber/raw/master/imgs/05.png)
 
 ## Xml属性
@@ -94,6 +101,8 @@ scrollNumber.setTextFont("myfont.ttf");
 ## 更新日志
 
  - 添加字体修改支持 2016年7月22日
+ - 修复部分字体偏移问题
+ - 新增设置动画速度接口 2017年4月23日
 
 ## License
     The MIT License (MIT)

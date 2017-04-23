@@ -3,6 +3,7 @@ package top.wuhaojie.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorRes;
+import android.support.annotation.IntRange;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -27,6 +28,7 @@ public class MultiScrollNumber extends LinearLayout {
     private int[] mTextColors = new int[]{R.color.purple01};
     private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
     private String mFontFileName;
+    private int mVelocity = 15;
 
     public MultiScrollNumber(Context context) {
         this(context, null);
@@ -70,6 +72,7 @@ public class MultiScrollNumber extends LinearLayout {
             ScrollNumber scrollNumber = new ScrollNumber(mContext);
             scrollNumber.setTextColor(ContextCompat
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
+            scrollNumber.setVelocity(mVelocity);
             scrollNumber.setTextSize(mTextSize);
             scrollNumber.setInterpolator(mInterpolator);
             if (!TextUtils.isEmpty(mFontFileName))
@@ -157,6 +160,13 @@ public class MultiScrollNumber extends LinearLayout {
         mFontFileName = fileName;
         for (ScrollNumber s : mScrollNumbers) {
             s.setTextFont(fileName);
+        }
+    }
+
+    public void setScrollVelocity(@IntRange(from = 0, to = 1000) int velocity) {
+        mVelocity = velocity;
+        for (ScrollNumber s : mScrollNumbers) {
+            s.setVelocity(velocity);
         }
     }
 
