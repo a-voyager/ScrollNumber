@@ -5,8 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.support.annotation.IntRange;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -17,6 +19,8 @@ import android.view.animation.Interpolator;
  */
 public class ScrollNumber extends View {
 
+    public static final String TAG = "ScrollNumber";
+    public static final int DEFAULT_VELOCITY = 15;
     private int mDeltaNum;
     private int mCurNum;
     private int mNextNum;
@@ -28,12 +32,15 @@ public class ScrollNumber extends View {
     private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
 
 
-    private int mTextCenterX;
+    private float mTextCenterX;
     private int mTextHeight;
     private Rect mTextBounds = new Rect();
     private int mTextSize = sp2px(130);
     private int mTextColor = 0xFF000000;
     private Typeface mTypeface;
+
+
+    private int mVelocity = DEFAULT_VELOCITY;
 
     public ScrollNumber(Context context) {
         this(context, null);
@@ -57,8 +64,10 @@ public class ScrollNumber extends View {
 
         measureTextHeight();
 
-//        setNumber(0, 6, 1000);
+    }
 
+    public void setVelocity(@IntRange(from = 0, to = 1000) int velocity) {
+        mVelocity = velocity;
     }
 
     public void setNumber(final int from, final int to, long delay) {
@@ -112,7 +121,7 @@ public class ScrollNumber extends View {
         int height = measureHeight(heightMeasureSpec);
         setMeasuredDimension(width, height);
 
-        mTextCenterX = (getMeasuredWidth() - getPaddingLeft() - getPaddingRight()) / 2;
+        mTextCenterX = (getMeasuredWidth() - getPaddingLeft() - getPaddingRight()) >>> 1;
     }
 
     private int measureHeight(int measureSpec) {
@@ -130,7 +139,7 @@ public class ScrollNumber extends View {
                 break;
         }
         result = mode == MeasureSpec.AT_MOST ? Math.min(result, val) : result;
-        return result + getPaddingTop() + getPaddingBottom()+dp2px(40);
+        return result + getPaddingTop() + getPaddingBottom() + dp2px(40);
     }
 
     private int measureWidth(int measureSpec) {
@@ -155,13 +164,12 @@ public class ScrollNumber extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
+
         if (mCurNum != mTargetNum) {
             postDelayed(mScrollRunnable, 0);
-            if (mOffset <= -1) {
-                mOffset = 0;
-                calNum(mCurNum + 1);
-            }
         }
+
+        Log.d(TAG, "onDraw: curr=" + mCurNum + " target=" + mTargetNum + " offset=" + mOffset);
 
         canvas.translate(0, mOffset * getMeasuredHeight());
         drawSelf(canvas);
@@ -189,16 +197,23 @@ public class ScrollNumber extends View {
         @Override
         public void run() {
             float x = (float) (1 - 1.0 * (mTargetNum - mCurNum) / mDeltaNum);
-            mOffset -= 0.15f * (1 - mInterpolator.getInterpolation(x) + 0.1);
+//            mOffset -= 0.15f * (1 - mInterpolator.getInterpolation(x) + 0.1);
+            mOffset -= mVelocity * 0.01f * (1 - mInterpolator.getInterpolation(x) + 0.1);
             invalidate();
+
+            if (mOffset <= -1) {
+                mOffset = 0;
+                calNum(mCurNum + 1);
+            }
+
+
         }
     };
 
 
     private void drawNext(Canvas canvas) {
-        int y = getMeasuredHeight() * 3 / 2;
-        canvas.drawText(mNextNum + "", mTextCenterX, y + mTextHeight / 2,
-                mPaint);
+        float y = (float) (getMeasuredHeight() * 1.5);
+        canvas.drawText(mNextNum + "", mTextCenterX, y + mTextHeight / 2, mPaint);
     }
 
     private void drawSelf(Canvas canvas) {
