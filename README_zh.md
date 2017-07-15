@@ -103,6 +103,7 @@ scrollNumber.setScrollVelocity(30);
  - 添加字体修改支持 2016年7月22日
  - 修复部分字体偏移问题
  - 新增设置动画速度接口 2017年4月23日
+ - 支持设置小数, setNumber(double num) 2017年7月15日
 
 ## License
     The MIT License (MIT)

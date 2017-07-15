@@ -101,6 +101,7 @@ scrollNumber.setScrollVelocity(30);
 ## Update Log
 
  - add font change option on 22/7/2016.
+ - support double or float number, setNumber(double num) 15/7/2017
 
 ## License
     The MIT License (MIT)
