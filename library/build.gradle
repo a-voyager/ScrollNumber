@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
@@ -21,21 +21,34 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:appcompat-v7:26+'
 }
 ext {
-    bintrayRepo = 'maven'////bintray上的仓库名，一般为maven
-    bintrayName = 'ScrollNumber'//bintray上的项目名
 
-    publishedGroupId = 'top.wuhaojie'//JCenter的GroupId
-    artifact = 'Library'//JCenter的ArtifactId
+
+    package_repo = 'maven' // bintray上的仓库名，一般为maven
+    package_type = 'aar'  // 输出类型
+    package_group = 'top.wuhaojie' // JCenter的GroupId
+    package_artifact = 'Scroll-Number' // JCenter的ArtifactId
+    package_version = '1.0'  // JCenter的VersionId
+    package_description = 'A tool for Android'
+
+    // 以下选填
+//    siteUrl = 'https://github.com/'
+//    gitUrl = 'https://github.com/'
+
+//    bintrayRepo = 'maven'////bintray上的仓库名，一般为maven
+//    bintrayName = 'ScrollNumber'//bintray上的项目名
+
+//    publishedGroupId = 'top.wuhaojie'//JCenter的GroupId
+//    artifact = 'Library'//JCenter的ArtifactId
 
     siteUrl = 'https://github.com/a-voyager/ScrollNumber'
     gitUrl = 'https://github.com/a-voyager/ScrollNumber'
 
-    libraryVersion = '1.0.0'//版本号
-    libraryName = 'ScrollNumber'//项目名字，没什么用
-    libraryDescription = 'A widget for Android'//项目描述，没什么用
+//    libraryVersion = '1.0.0'//版本号
+//    libraryName = 'ScrollNumber'//项目名字，没什么用
+//    libraryDescription = 'A widget for Android'//项目描述，没什么用
 
     //开发者信息
     developerId = 'w19961009'
@@ -46,7 +59,6 @@ ext {
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+    allLicenses = ['Apache-2.0']
 }
-apply from:'https://cdn.rawgit.com/Jude95/JCenter/master/install.gradle'
-apply from:'https://cdn.rawgit.com/Jude95/JCenter/master/bintray.gradle'
+apply from:'https://raw.githubusercontent.com/Jude95/JCenter/v2/bintray.gradle'

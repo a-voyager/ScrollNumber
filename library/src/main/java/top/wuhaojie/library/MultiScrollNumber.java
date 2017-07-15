@@ -7,10 +7,13 @@ import android.support.annotation.IntRange;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +59,47 @@ public class MultiScrollNumber extends LinearLayout {
         setGravity(Gravity.CENTER);
 
 
+    }
+
+    public void setNumber(double num) {
+        if (num < 0) throw new IllegalArgumentException("number value should >= 0");
+        resetView();
+
+        String str = String.valueOf(num);
+        char[] charArray = str.toCharArray();
+        for (int i = charArray.length - 1; i >= 0; i--) {
+            if (Character.isDigit(charArray[i])) {
+                mTargetNumbers.add(charArray[i] - '0');
+            } else {
+                mTargetNumbers.add(-1);
+            }
+        }
+
+        for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
+            if (mTargetNumbers.get(i) != -1) {
+                ScrollNumber scrollNumber = new ScrollNumber(mContext);
+                scrollNumber.setTextColor(ContextCompat
+                        .getColor(mContext, mTextColors[i % mTextColors.length]));
+                scrollNumber.setVelocity(mVelocity);
+                scrollNumber.setTextSize(mTextSize);
+                scrollNumber.setInterpolator(mInterpolator);
+                if (!TextUtils.isEmpty(mFontFileName))
+                    scrollNumber.setTextFont(mFontFileName);
+                scrollNumber.setNumber(0, mTargetNumbers.get(i), i * 10);
+                mScrollNumbers.add(scrollNumber);
+                addView(scrollNumber);
+
+            } else {
+                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                TextView point = new TextView(mContext);
+                point.setText(" . ");
+                point.setGravity(Gravity.BOTTOM);
+                point.setTextColor(ContextCompat
+                        .getColor(mContext, mTextColors[i % mTextColors.length]));
+                point.setTextSize(mTextSize / 3);
+                addView(point, params);
+            }
+        }
     }
 
     public void setNumber(int val) {
@@ -170,5 +214,15 @@ public class MultiScrollNumber extends LinearLayout {
         }
     }
 
+
+    private int dp2px(float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, getResources().getDisplayMetrics());
+    }
+
+    private int sp2px(float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                dpVal, getResources().getDisplayMetrics());
+    }
 
 }

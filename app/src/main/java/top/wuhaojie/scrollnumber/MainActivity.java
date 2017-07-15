@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
         MultiScrollNumber scrollNumber = (MultiScrollNumber) findViewById(R.id.scroll_number);
 
-        scrollNumber.setTextColors(new int[]{R.color.blue01, R.color.red01,
-                R.color.green01, R.color.purple01});
+        scrollNumber.setTextColors(new int[]{R.color.red01, R.color.orange01,
+                R.color.blue01, R.color.green01, R.color.purple01});
 //        scrollNumber.setTextSize(64);
 
 //        scrollNumber.setNumber(64, 2048);
@@ -24,6 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         scrollNumber.setScrollVelocity(100);
         scrollNumber.setTextFont("myfont.ttf");
-        scrollNumber.setNumber(2048);
+        scrollNumber.setNumber(20.48);
     }
 }
